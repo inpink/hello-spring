@@ -36,8 +36,12 @@ public class MemoryMemberRepository implements MemberRepository{
     }
 
     @Override
-    public List<Member> findAll() { //모든 멤버 객체를 반환하는 findAll()함수 정의
+    public List<Member> findAll() { //모든 멤버 객체를 반환하는 findAll()함수 정의. ★반환 타입이 ArrayList가 아니라 List이다!
         return new ArrayList<>(store.values()); //'리스트'에 맵에 있는 모든 멤버 객체들-values()를 '담아서 반환!'
         //실무에선 리스트 많이 쓰인다.
+    }
+
+    public void clearStore(){
+        store.clear(); //맵을 텅 비워주는 clear() 메쏘드
     }
 }
