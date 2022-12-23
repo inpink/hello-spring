@@ -8,7 +8,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemberService { //회원 서비스 기능 개발
-    private final MemberRepository memberRepository = new MemoryMemberRepository(); //메모리는 필요하니까 메모리 객체 1개 가져오기
+    //private final MemberRepository memberRepository = new MemoryMemberRepository(); //메모리는 필요하니까 메모리 객체 1개 가져오기
+    private final  MemberRepository memberRepository; //DI(의존관계주입)을 하기 위해, new MemoryMemberRepository를 만들지 않고 외부에서 대입받는다.
+
+    //생성자 매개변수를 통해 의존관계를 주입받는다. 새로운 MemoryMemberRepository를 MemberService에서 만들지 않고, 외부에서 만든 것을 이 MemberSerive의 저장소로 이용하겠다는 의미이다.
+    public MemberService(MemoryMemberRepository MemorymemberRepository) {
+        this.memberRepository=MemorymemberRepository;
+    }
 
     //회원 가입시키는 메쏘드
     public Long join(Member member){ //가입시킬 멤버 객체 member을 매개변수로 받아 가입시킨다. (이름 중복 검사하고 레포에 저장)
