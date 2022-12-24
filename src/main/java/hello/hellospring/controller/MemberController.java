@@ -4,8 +4,11 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 //@Controller는 @Component 하위로, '컴포넌트 스캔'을 이용하여 '스프링 빈'에 자동 등록할 때도 쓰인다.
 @Controller //Controller를 만들거면 @Controller를 넣어줘야 함.
@@ -34,5 +37,12 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/"; //다 끝난 다음에는, redirect(지정해준 링크로 다시 돌려보냄)해줌. 돌려보낼 링크는 /으로, 기본 localhost:8080이다.
+    }
+
+    @GetMapping(value = "/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
