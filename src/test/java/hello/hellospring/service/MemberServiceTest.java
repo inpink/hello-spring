@@ -15,12 +15,12 @@ class MemberServiceTest {
     MemberService memberService;
     MemoryMemberRepository memberRepository;
 
-    //MemberService와 MemberRepository를 매 메쏘드마다 새로 만들어주고, 의존관계 주입하여 새로 만든 두 MemberService와 레포지토리를 엮어준다.
+    //MemberService와 MemberRepository를 매 메쏘드마다 새로 만들어주고, 의존관계 주입하여 새로 만든 두 MemberService와 리포지토리를 엮어준다.
     //굳이 BeforeEach해서 매번 새로운 객체를 만들지 않고 위에서 new로 새로운 객체 각각 하나씩만 만들어둬도 여기에서는 에러는 안뜨긴 하지만, 혹시 코드가 복잡해질 때 문제가 될 수 있기 때문이다.
    @BeforeEach //매 메쏘드가 실행되기 전에 매번 해주는 것이다.
     public void beforeEach(){
-        memberRepository = new MemoryMemberRepository(); //새로운 레포지토리 생성해주고,
-        memberService = new MemberService(memberRepository); //새로운 MemberService 객체 생성하고, 방금 만든 레포지토리 DI로 연결해준다.
+        memberRepository = new MemoryMemberRepository(); //새로운 리포지토리 생성해주고,
+        memberService = new MemberService(memberRepository); //새로운 MemberService 객체 생성하고, 방금 만든 리포지토리 DI로 연결해준다.
     }
 
     @AfterEach

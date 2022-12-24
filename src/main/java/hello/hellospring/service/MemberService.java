@@ -17,7 +17,7 @@ public class MemberService { //회원 서비스 기능 개발
     }
 
     //회원 가입시키는 메쏘드
-    public Long join(Member member){ //가입시킬 멤버 객체 member을 매개변수로 받아 가입시킨다. (이름 중복 검사하고 레포에 저장)
+    public Long join(Member member){ //가입시킬 멤버 객체 member을 매개변수로 받아 가입시킨다. (이름 중복 검사하고 리포에 저장)
         validateDuplicateMember(member); //이름 중복 검사하는 사용자 정의 함수
         memberRepository.save(member); //이름 중복 검사에서 통과한 뒤, 저장소에 member 객체를 저장시켜 가입시킨다.
         return member.getId(); //해당 멤버 id를 반환한다.
