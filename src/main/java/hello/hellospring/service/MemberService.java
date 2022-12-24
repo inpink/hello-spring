@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service //@Component 하위에 있는 @Service로 이 클래스를 '스프링 빈'에 등록한다! 그러면 자동으로 의존관계 주입이 된다.
+//@Service //@Component 하위에 있는 @Service로 이 클래스를 '스프링 빈'에 등록한다! 그러면 자동으로 의존관계 주입이 된다.
 public class MemberService { //회원 서비스 기능 개발
     //private final MemberRepository memberRepository = new MemoryMemberRepository(); //메모리는 필요하니까 메모리 객체 1개 가져오기
     private final  MemberRepository memberRepository; //DI(의존관계주입)을 하기 위해, new MemoryMemberRepository를 만들지 않고 외부에서 대입받는다.
 
     //생성자 매개변수를 통해 의존관계를 주입받는다. 새로운 MemoryMemberRepository를 MemberService에서 만들지 않고, 외부에서 만든 것을 이 MemberSerive의 저장소로 이용하겠다는 의미이다.
-    @Autowired //이 클래스와 MemorymemberRepository를 와이어로 연결하여 의존관계를 주입해준다. 멤버서비스->멤버리포지토리 ( 멤버 서비스가 멤버 리포지토리 사용)
-    public MemberService(MemoryMemberRepository MemorymemberRepository) {
+    //@Autowired //이 클래스와 MemorymemberRepository를 와이어로 연결하여 의존관계를 주입해준다. 멤버서비스->멤버리포지토리 ( 멤버 서비스가 멤버 리포지토리 사용)
+    public MemberService(MemberRepository MemorymemberRepository) {
         this.memberRepository=MemorymemberRepository;
     }
 
