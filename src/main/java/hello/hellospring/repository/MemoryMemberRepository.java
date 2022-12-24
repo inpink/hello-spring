@@ -1,10 +1,12 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 //MemberRepository interface를 상속받아, 개발 초기단계에 가볍게 메모리를 저장소로 이용하는 MemoryMemberRepository 클래스 생성
+@Repository //@Component 하위에 있는 @Repository로 이 클래스를 '스프링 빈'에 등록한다! 그러면 자동으로 의존관계 주입이 된다.
 public class MemoryMemberRepository implements MemberRepository{
     //Alt+Enter해서 implememts method하여 구현해야 할 4개 함수 Override.
 
