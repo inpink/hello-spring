@@ -39,10 +39,10 @@ public class MemberController {
         return "redirect:/"; //다 끝난 다음에는, redirect(지정해준 링크로 다시 돌려보냄)해줌. 돌려보낼 링크는 /으로, 기본 localhost:8080이다.
     }
 
-    @GetMapping(value = "/members")
+    @GetMapping(value = "/members") // /members URL으로 연결
     public String list(Model model) {
-        List<Member> members = memberService.findMembers();
-        model.addAttribute("members", members);
-        return "members/memberList";
+        List<Member> members = memberService.findMembers(); //members 데이터는, findMembers()로 반환받은 전체 '멤버 객체' 리스트형임.
+        model.addAttribute("members", members); //model.addAttribute로,  members라는 태그로 members 데이터를 보냄!
+        return "members/memberList"; //members 패키지의 memberList.html를 띄움
     }
 }

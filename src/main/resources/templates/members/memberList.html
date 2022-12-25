@@ -11,8 +11,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="member : ${members}">
-        <td th:text="${member.id}"></td>
+      <tr th:each="member : ${members}"> <!--타임리프 문법.  members안에 있는걸 하나씩 꺼내면서 반복문 돌음-->
+        <td th:text="${member.id}"></td> <!--members.id, members.name을 가져오는데, member class에서 이 들은 private니까 이걸 직접 가져오는게 아니라, 타임리프에서 자동으로 getter setter 이용해서 가져오도록  해줌!-->
         <td th:text="${member.name}"></td>
       </tr>
       </tbody>
