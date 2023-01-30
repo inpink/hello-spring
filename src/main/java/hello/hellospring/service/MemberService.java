@@ -6,6 +6,7 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class MemberService { //회원 서비스 기능 개발
         this.memberRepository=MemorymemberRepository;
     }
 
+    @Transactional //JPA를 쓸거면 회원 가입(MemberService - join)할 때, @Transactional을 해줘야 함.
     //회원 가입시키는 메쏘드
     public Long join(Member member){ //가입시킬 멤버 객체 member을 매개변수로 받아 가입시킨다. (이름 중복 검사하고 리포에 저장)
         validateDuplicateMember(member); //이름 중복 검사하는 사용자 정의 함수

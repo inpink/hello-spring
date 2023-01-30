@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +24,8 @@ class MemberServiceIntegrationTest {
 
     // join()함수를 테스트한다. 50%짜리 테스트이다.
     @Test
+    // @Commit //테스트할 때, @Commit 달아주면, @Transactional이어도 그 함수 결과는 롤백되지 않는다.
+    //혹시 테스트가 잘 되고있는 지 눈으로 추가적으로 확인하고 싶다면, Join Test에 @Commit을 달아서, DB값과 홈페이지의 출력값을 확인해보자.
     void join() {
         //Given
         Member member1 = new Member(); //멤버 객체 하나 만들고, 이름을 Spring으로.
