@@ -1,6 +1,7 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.JdbcMemberRepository;
+import hello.hellospring.repository.JdbcTemplateMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
@@ -25,8 +26,9 @@ public class SpringConfig {
     @Bean //위와 마찬가지이다. 여기서 2개의 Bean으로 2개를 스프링 빈에 등록해주면
     // 멤버컨트롤러 -> 멤버서비스 -> 멤버리포지토리 이렇게 의존관계 주입이 된다.
     public MemberRepository memberRepository(){
-        return new JdbcMemberRepository(dataSource); //JdbcMemberRepository 사용. 주입받은 데이터소스 보냄!
+        //return new JdbcMemberRepository(dataSource); //JdbcMemberRepository 사용. 주입받은 데이터소스 보냄!
         //return new MemoryMemberRepository(); //JAVA로 직접 스프링 빈에 등록해주는 것의 장점은, 여기서 return 값을 DBMemberRepository();로 바꿔주면
         //다른 코드 하나 건들일 필요 없이, 의존관계만 바꿔주면 저장소 등을 쉽게 교체할 수 있다는 것이 큰 장점이다! 멤버컨트롤러->멤버서비스->DB리포지토리
+        return new JdbcTemplateMemberRepository(dataSource); //JdbcTemplateMemberRepository 이용.
     }
 }
