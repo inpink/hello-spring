@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,12 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional
+@Transactional //*테스트할 때 DB에 데이터가 들어가버리는 문제를 쉽게 해결.
+//@Transactional을 붙여주면 '테스트' 끝나면 '롤백'해주기 때문에 DB에 데이터가 남지 않음. (테스트만 롤백해주는 것.) (중복 test 등 가능해짐)
 class MemberServiceIntegrationTest {
 
     @Autowired MemberService memberService; //@Autowired를 설정한 메서드가 자동으로 호출되고, 인스턴스가 자동으로 주입됨. (스프링 자동 의존관계 주입)
-    @Autowired MemoryMemberRepository memberRepository;
-
+    @Autowired MemberRepository memberRepository; //*MemoryMemberRepository가 아닌 MemberRepository를 써야 함 . => SpringConfig에서 스프링 빈으로 MemberService와 MemberRepository를 등록해줬기 때문이다.
 
     // join()함수를 테스트한다. 50%짜리 테스트이다.
     @Test
