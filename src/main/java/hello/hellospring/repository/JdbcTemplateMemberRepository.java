@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class JdbcTemplateMemberRepository implements MemberRepository{
+public class JdbcTemplateMemberRepository implements MemberRepository{ //MemberRepository 상속
     //Alt+Enter해서 implememts method하여 구현해야 할 4개 함수 Override.
 
     private final JdbcTemplate jdbcTemplate; //org.springframework.jdbc.core에 포함되어 있다!
