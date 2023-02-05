@@ -12,8 +12,12 @@ import java.util.Optional;
 //==>  SpringConfig에서 MemberRepository memberRepository()를 Bean에 등록할 필요가 없으며, MemberRepository memberRepository를 생성자 등을 이용하여 바로 스프링으로부터 주입받아 상수로 사용할 수 있다.
 public interface SpringDataJpaMemberRepository extends JpaRepository<Member,Long>, MemberRepository {
 
-    //===> 이전 Repository들과 다르게 구현할 것이 없다! 이렇게만 쓰면 기능완료...? ㅋ
+    //이전 Repository들과 다르게 구현할 것이 없다! 이렇게만 쓰면 구현 완료! 왜냐하면 이미 기능이 만들어져 있기 때문이다.
+    //JpaRepository에서 Ctrl+B 눌러서 ListCrudRepository 등으로 계속 들어가다 보면, 이미 구현되어있는 findAll, findAllById 등의 메서드를 확인할 수 있다!=> 개발 생산성 향상
+
     @Override
     Optional<Member> findByName(String name);
+    //★ 메서드의 이름을 이용하여 알아서 쿼리문을 짜줌! findByNameAndID(String name, Long id) 이런식으로 메서드이름 규칙이 정해져있음. 이에 따라 쿼리문을 자동으로 짜주는 것!
+    //===> 인터페이스만으로 웬만한 기능을 구현 가능
 
 }
