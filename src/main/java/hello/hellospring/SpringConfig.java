@@ -1,5 +1,6 @@
 package hello.hellospring;
 
+import hello.hellospring.aop.TimeTraceAop;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.*;
 import hello.hellospring.service.MemberService;
@@ -53,4 +54,9 @@ public class SpringConfig {
         //return new JdbcTemplateMemberRepository(dataSource); //JdbcTemplateMemberRepository 이용.
         return new JpaMemberRepository(em); //JpaMemberRepository 사용. 매개변수로 위에서 DI받은 EntityManager em보내주기.
     }*/
+
+    @Bean
+    public TimeTraceAop timeTraceAop(){
+        return new TimeTraceAop();
+    }
 }
