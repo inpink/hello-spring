@@ -55,8 +55,4 @@ public class SpringConfig {
         return new JpaMemberRepository(em); //JpaMemberRepository 사용. 매개변수로 위에서 DI받은 EntityManager em보내주기.
     }*/
 
-    @Bean
-    public TimeTraceAop timeTraceAop(){
-        return new TimeTraceAop();
-    }
 }
