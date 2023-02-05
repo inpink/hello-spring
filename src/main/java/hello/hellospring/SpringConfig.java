@@ -13,6 +13,10 @@ import javax.sql.DataSource;
 @Configuration //@Component에 포함되는 @Configuration. @Bean도 같이 이용해서 Java로 직접 '스프링 빈'에 객체를 등록해줄 때 쓴다.
 public class SpringConfig {
 
+    //★ SpringDataJpaMemberRepository interface가 JpaRepository interace를 상속받아 SpringDataJpaMemberRepository interface가 스프링빈에 자동으로 등록되었으므로,
+    // 아래에서 MemberRepository memberRepository()를 Bean으로 등록해주지 않아도 된다!
+    // =>  MemberRepository memberRepository()의 return값 없이 바로 스프링으로부터 memberRepository를 생성자 등으로 주입받아!!!상수로 사용할 수 있다.
+
     // 마찬가지로 생성자를 이용해서 스프링으로부터 MemberRepository를 주입받는다.
     //SpringConfig->MemberRepository 의존성 주입(DI)
     private final MemberRepository memberRepository;
@@ -35,13 +39,11 @@ public class SpringConfig {
 */
     @Bean //아래 메쏘드의 return값을 '스프링 빈'에 등록해준다!
     public MemberService memberService(){ //등록해줄 객체 Type은 MemberService
-        //★아래에서 Bean으로 등록하며 return값을 이용하던 것과 다르게, 상수 memberRepository를 바로 사용함.
-        //(
+        //★아래에서 Bean으로 등록하며 return값을 이용하던 것과 다르게, 상수 memberRepository를 바로 사용할 수 있다!
         return new MemberService(memberRepository); //생성자를 이용해 새로운 MemberService 객체를 만들고, 반환하여 스프링 빈에 등록
+        //return new MemberService(memberRepository()); //생성자를 이용해 새로운 MemberService 객체를 만들고, 반환하여 스프링 빈에 등록
     }
 
-    //★ SpringDataJpaMemberRepository interface가 JpaRepository interace를 상속받아 스프링빈에 자동으로 등록되었으므로,
-    //여기서 Bean으로 등록해주지 않아도 된다!! ★
 /*    @Bean //위와 마찬가지이다. 여기서 2개의 Bean으로 2개를 스프링 빈에 등록해주면
     // 멤버컨트롤러 -> 멤버서비스 -> 멤버리포지토리 이렇게 의존관계 주입이 된다.
     public MemberRepository memberRepository(){
